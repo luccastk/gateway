@@ -24,10 +24,12 @@ spring:
             - Path=/user-service/**
           filters:
             - RewritePath=/user-service/(?<remaining>.*), /${remaining}
-        - id: file-service
-          uri: lb://file-service/**
+        - id: service-file
+          uri: lb://service-file
           predicates:
-            - Path=/file-service/**
+            - Path=/service-file/**
+          filters:
+            - RewritePath=/service-file/(?<remaining>.*):/${remaining}
 
 springdoc:
   enable-native-support: true
