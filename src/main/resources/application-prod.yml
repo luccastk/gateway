@@ -29,7 +29,6 @@ spring:
           predicates:
             - Path=/service-file/**
           filters:
-            - RewritePath=/service-file/(?<remaining>.*):/${remaining}
 
 springdoc:
   enable-native-support: true
