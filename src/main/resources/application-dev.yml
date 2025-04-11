@@ -12,19 +12,19 @@ spring:
         connect-timeout: 20000
         response-timeout: 40s
       routes:
-        - id: product-service
-          uri: lb://product-service
+        - id: service-product
+          uri: lb://service-product
           predicates:
-            - Path=/product-service/**
+            - Path=/service-product/**
           filters:
-            - RewritePath=/product-service/(?<remaining>.*), /${remaining}
-        - id: user-ms
-          uri: lb://user-service
+            - RewritePath=/service-product/(?<remaining>.*), /${remaining}
+        - id: service-user
+          uri: lb://service-user
           predicates:
-            - Path=/user-service/**
+            - Path=/service-user/**
           filters:
-            - RewritePath=/user-service/(?<remaining>.*), /${remaining}
-        - id: file-service
+            - RewritePath=/service-user/(?<remaining>.*), /${remaining}
+        - id: service-file
           uri: lb://file-service/**
           predicates:
             - Path=/file-service/**
@@ -39,10 +39,10 @@ springdoc:
     urls:
       - url: /v3/api-docs
         name: API Gateway Service
-      - url: /product-service/v3/api-docs
-        name: Product Service
-      - url: /user-service/v3/api-docs
-        name: User Service
+      - url: /service-product/v3/api-docs
+        name: Service Product
+      - url: /service-user/v3/api-docs
+        name: Service User
 
 eureka:
   client:
